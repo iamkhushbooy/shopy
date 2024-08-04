@@ -1,28 +1,45 @@
 'use client'
-import React, { useState } from 'react'
-import Login from './_components/Login'
-import Register from './_components/Register'
+import React, { useEffect, useState } from 'react'
+import Kurti from './_components/Kurti'
+import { KurtiType } from './_components/Types'
 const page = () => {
-  const [handle, setHandle] = useState(false)
-  return (
-    <div className='w-full h-[100vh] flex py-[70px] items-center bg-[#efecec75] flex-col'>
-      {!handle ?
-        <>
-          <Login></Login>
-        <div className='flex flex-row m-5'>
-        <p className='mx-2 '>Don't have an account ?</p>
-        <button onClick={()=>setHandle(true)} className='text-blue-500'>Register</button>
-        </div>
-        </>
-        :
-        <>
-          <Register></Register>
-         <div className='flex flex-row mt-5'>
-         <p className='mx-2'>Already you have an account ?</p>
-         <button  onClick={()=>setHandle(false)} className='text-blue-500'>Login</button>
-         </div>
-        </>
+  const [data, setdata] = useState([])
+  const getApi = async () => {
+    const f = await fetch('api', {
+      cache: 'force-cache',
+      next: {
+        revalidate: 5
       }
+    })
+    const j = await f.json();
+    console.log(j);
+    setdata(j.data)
+  }
+  useEffect(() => {
+    getApi()
+  }, [])
+  return (
+    <div className='w-full min-h-screen bg-slate-100
+    flex flex-wrap
+    '>
+      {data.map((item: KurtiType, index) => (
+        <>
+          <Kurti
+            _id={item._id}
+            img={item.img}
+            name={item.name}
+            style={item.style}
+            material={item.material}
+            color={item.color}
+            available={3}
+            price={item.price}
+            size={item.size}
+          ></Kurti>
+        </>
+      ))}
+
+
+
     </div>
   )
 }
