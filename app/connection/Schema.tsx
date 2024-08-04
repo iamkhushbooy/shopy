@@ -41,6 +41,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: [0, 'Age must be a positive number']
+    },
+    verified:{
+        type:Boolean,
+        default:false
+
     }
 }, { timestamps: true });
 

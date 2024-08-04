@@ -7,6 +7,10 @@ export const POST = async (req:NextRequest) => {
         const { email, password } = await req.json();
         await ConnectDB();
         const data = await users.findOne({ email, password });
+        const verified=data.verified;
+        if(!verified){
+            return NextResponse.json({ msg: `You aren't verified please verfy your email` });
+        }
         const token = jwt.sign({ email }, 'khushboo', { expiresIn: '1hr' })
         if (data) {
             return NextResponse.json({ msg: 'You are logged in successfully', token });
