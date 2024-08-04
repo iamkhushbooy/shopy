@@ -7,7 +7,7 @@ export const POST = async (req: NextRequest) => {
     try {
         const { name, email, phone, password, age } = await req.json();
         const verification_code = jwt.sign({ email }, 'khushboo', { expiresIn: '1hr' })
-        const verificationLink = `http://localhost:3000/verify?token=${verification_code}`
+        const verificationLink = `${process.env.Dev}/verify?token=${verification_code}`
         await ConnectDB();
         const data = await users.create({ name, email, phone, password, age });
         await transporter.sendMail({
