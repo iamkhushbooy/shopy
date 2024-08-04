@@ -4,11 +4,17 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { ConnectDB } from "@/app/connection/ConnectDB";
 import { users } from "@/app/connection/Schema";
 
-export const POST=async(req:NextRequest,res:NextResponse)=>{
+export const GET=async(req:NextRequest,res:NextResponse)=>{
     try {
-        const {token}=await req.json();
-        const jwtverified=jwt.verify(token,'khushboo') as JwtPayload
-        const email=jwtverified.email;
+        const token= req.headers.get('auth');
+        if(!token){
+            return NextResponse.json(`you don't have token`)
+        }
+        const verified=jwt.verify(token,'khushboo')as JwtPayload;
+        if(!verified){
+            return NextResponse.json(`you can't verified because your token is Invalid`)
+        }
+        const email=verified.email;
         await ConnectDB()
         const result = await users.updateOne(
             { email: email },
