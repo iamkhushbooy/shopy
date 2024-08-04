@@ -6,7 +6,7 @@ const page = () => {
   const [msg, setMsg] = useState('')
   const search = useSearchParams()
   const token = search.get('token')
-  const verify = async () => {
+  const verifypage = async () => {
     const res = await axios.post('api/verify', {
       token
     })
@@ -14,7 +14,7 @@ const page = () => {
     setMsg(data)
   }
   useEffect(() => {
-    verify();
+    verifypage();
   
   }, [])
 
