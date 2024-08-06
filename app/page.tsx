@@ -5,12 +5,7 @@ import { KurtiType } from './_components/Types'
 const page = () => {
   const [data, setdata] = useState([])
   const getApi = async () => {
-    const f = await fetch('api', {
-      cache: 'force-cache',
-      next: {
-        revalidate: 5
-      }
-    })
+    const f = await fetch('api')
     const j = await f.json();
     console.log(j);
     setdata(j.data)
