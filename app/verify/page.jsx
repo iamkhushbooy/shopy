@@ -1,6 +1,6 @@
 
 const verify=async(token)=>{
-     const res=await fetch(`${process.env.Dev}/api/verify`,{
+     const res=await fetch(`${process.env.DEV}/api/verify`,{
       headers:{
         auth:token
       },
