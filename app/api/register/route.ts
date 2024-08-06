@@ -16,7 +16,7 @@ export const POST = async (req: NextRequest) => {
             subject:'Email Verification',
             html:`<p>Click on the link to verify:<a href="${verificationLink}">Verify Link</a></p> `
         })
-        return NextResponse.json({ msg: 'You are registered successfully', data });
+        return NextResponse.json({ msg: 'You are registered successfully'});
     } catch (error) {
         return NextResponse.json({ msg: 'Registration failed' });
     }
