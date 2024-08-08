@@ -9,7 +9,8 @@ const Page = () => {
       const token = localStorage.getItem('token');
       const res = await fetch('/api/cart', {
         headers: {
-          auth: token,
+          'Authorization': `Bearer ${token}`
+          // auth: token,
         }
       });
       const data = await res.json();

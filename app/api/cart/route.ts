@@ -5,7 +5,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { KurtiType } from "@/app/_components/Types";
 export const GET = async (req: NextRequest) => {
     try {
-        const token = req.headers.get('auth');
+        const token = req.headers.get('Authorization')?.split(' ')[1];
         if (!token) {
             return NextResponse.json('You are not logged in')
         }
