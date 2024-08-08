@@ -1,7 +1,20 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { KurtiType } from './Types'
+import { usecont } from '../context/context'
+import axios from 'axios'
+
 const Kurti = ({ _id, img, name, style, material, color, price, available, size }: KurtiType) => {
+    const {cart,setCart}=usecont()
+    const addtocart=async()=>{
+        const token=localStorage.getItem('token');
+        const res=await axios.post('api/cart',{
+            token,productId:_id
+        })
+        const data=res.data;
+        console.log(data);
+    }
     return (
         <div className='w-[45%] border border-yellow-500 h-[300px] m-[2.5%]
         flex  flex-col
@@ -21,9 +34,9 @@ const Kurti = ({ _id, img, name, style, material, color, price, available, size 
                 </div>
                 <div className='w-[38%] h-full flex flex-col justify-between items-center'>
                     <p className='text-[12px] font-light mt-3'>&#8377;{price}</p>
-                    <button className='p-1 m-1 text-[13px] 
-            font-bold bg-green-400 text-blue-700 rounded
-            hover:bg-green-500'>Add to cart</button>
+                    <button onClick={addtocart} className='p-1 m-1 text-[13px]
+                        font-bold bg-green-400 text-blue-700 rounded
+                       hover:bg-green-500'>Add to cart</button>
                 </div>
             </div>
         </div>

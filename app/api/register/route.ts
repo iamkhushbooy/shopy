@@ -6,7 +6,7 @@ import { transporter } from "@/app/emailconfig";
 export const POST = async (req: NextRequest) => {
     try {
         const { name, email, phone, password, age } = await req.json();
-        const verification_code = jwt.sign({ email }, 'khushboo', { expiresIn: '1hr' })
+        const verification_code = jwt.sign({ email }, 'khushboo', { expiresIn: '30d' })
         const verificationLink = `${process.env.DEV}/verify?token=${verification_code}`
         await ConnectDB();
         const data = await users.create({ name, email, phone, password, age });

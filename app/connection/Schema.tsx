@@ -1,15 +1,15 @@
 import mongoose, { Schema } from "mongoose";
-const coll=new Schema({
-    price:Number,
-    name:String,
-    style:String,
-    material:String,
-    available:Number,
-    color:String,
-    size:[],
-    img:String,
+const coll = new Schema({
+    price: Number,
+    name: String,
+    style: String,
+    material: String,
+    available: Number,
+    color: String,
+    size: [],
+    img: String,
 })
-export const products=mongoose.models.cloths||mongoose.model('cloths',coll)
+export const products = mongoose.models.cloths || mongoose.model('cloths', coll)
 
 
 
@@ -42,11 +42,29 @@ const userSchema = new mongoose.Schema({
         required: true,
         min: [0, 'Age must be a positive number']
     },
-    verified:{
-        type:Boolean,
-        default:false
+    verified: {
+        type: Boolean,
+        default: false
 
     }
 }, { timestamps: true });
 
 export const users = mongoose.models.users || mongoose.model('users', userSchema);
+
+
+
+const cart = new Schema({
+    userId: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    product: [
+        {
+            type: String,
+            required: true
+        }
+    ]
+});
+
+export const carts = mongoose.models.carts || mongoose.model('carts', cart);

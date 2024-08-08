@@ -11,7 +11,7 @@ export const POST = async (req:NextRequest) => {
         if(!verified){
             return NextResponse.json({ msg: `You aren't verified please verfy your email` });
         }
-        const token = jwt.sign({ email }, 'khushboo', { expiresIn: '1hr' })
+        const token = jwt.sign({ email }, 'khushboo', { expiresIn: '30d' })
         if (data) {
             return NextResponse.json({ msg: 'You are logged in successfully', token });
         } else {

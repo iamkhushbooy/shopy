@@ -1,13 +1,15 @@
 'use client'
 import React, { useState,useEffect} from 'react'
 import axios from 'axios'
+import { usecont } from '../context/context'
 import { useRouter } from 'next/navigation'
 const Page = () => {
+  const {login,setLogin}=usecont();
   const router=useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message,setMessage]=useState('')
-  const login = async () => {
+  const Login = async () => {
     const res = await axios.post('/api/login', {
       email,
       password,
@@ -17,6 +19,7 @@ const Page = () => {
     localStorage.setItem('token', res.data.token)
     if (res.data.token) {
       router.push('/')
+      setLogin(true)
     }
   }
   useEffect(() => {
@@ -42,7 +45,7 @@ const Page = () => {
         onChange={e => setPassword(e.target.value)}
       />
       <button
-        onClick={login}
+        onClick={Login}
         className='text-blue-500 border border-blue-500 px-2 py-1 font-bold w-[90%] h-[7vh] rounded mt-10'
       >
         Login
