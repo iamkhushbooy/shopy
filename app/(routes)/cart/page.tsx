@@ -24,10 +24,12 @@ const Page = () => {
     getCart();
   }, []);
   return (
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen
+    md:flex justify-center items-center
+    '>
       {kurti.map((item:KurtiType,index)=>(
        <Kurti
-       _id={item._id}
+       _id ={item._id}
        img={item.img}
        name={item.name}
        style={item.style}

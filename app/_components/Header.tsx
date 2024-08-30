@@ -28,7 +28,7 @@ const Header = () => {
                 <h1 className='font-bold ml-4 text-[25px]'>Shopy</h1>
             </div>
             <Link href={'/cart'} className='flex justify-center items-center'>
-                <Image className='ml-[150px]' src={'/cartt.png'} width={30} height={30} alt={''}></Image>
+                <Image className='ml-[150px] md:ml-[600px]' src={'/cartt.png'} width={30} height={30} alt={''}></Image>
                 <span className='relative right-5 bottom-2 text-pink-900 text-[12px]'>{cart}</span>
             </Link>
 
