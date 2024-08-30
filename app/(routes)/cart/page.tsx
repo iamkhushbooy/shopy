@@ -29,7 +29,7 @@ const Page = () => {
     '>
       {kurti.map((item:KurtiType,index)=>(
        <Kurti
-       _id={item._id}
+       _id ={item._id}
        img={item.img}
        name={item.name}
        style={item.style}
