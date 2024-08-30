@@ -16,8 +16,8 @@ const Kurti = ({ _id, img, name, style, material, color, price, available, size 
         console.log(data);
     }
     return (
-        <div className='w-[45%] border border-yellow-500 h-[300px] m-[2.5%]
-        flex  flex-col
+        <div className='w-[45%] border border-yellow-500 h-[300px] m-[2.5%] flex  flex-col
+        md:w-[200px] md:h-[280px] md:m-[1.5%]
        '>
             <Image
                 className='w-full h-[70%]'
