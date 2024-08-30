@@ -27,7 +27,7 @@ const Page = () => {
     <div className='w-full min-h-screen'>
       {kurti.map((item:KurtiType,index)=>(
        <Kurti
-       _id={item._id}
+       _id= {item._id}
        img={item.img}
        name={item.name}
        style={item.style}
